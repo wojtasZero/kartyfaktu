@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="load()">
+  <div class="settings">
+    <input type="checkbox" id="audio">
+    <label>Efekty dźwiękowe</label><br>
+  
+    <label for="file-input">
+      <a class="upload">Import</a>
+    </label>
+    <input type="file" id="file-input" accept=".txt" style="display: none;" />
+    
+    <a class="upload" onclick="startQuiz()">Odśwież</a>
+    <a class="upload" onclick="startQuiz(true)">Odśwież + Przelosuj</a>
+  </div>
+  <br>
+
+  <text>Pytanie nr. </text><input type="number" id="nr" min="1" oninput="changed(this.value)" value="1" /><br>
+
+  <div class="question-container">
+    <div id="question" class="question"></div>
+    <div id="answers" class="answers"></div>
+    <button id="next-btn" class="next-btn">→</button>
+    <br><br>
+    <text id="explanation" style="white-space: pre-line;"></text>
+  </div>
+  <br>
+  <text id="stats"></text>
+
+<script src="script.js"></script>
+</body>
+
+</html>
