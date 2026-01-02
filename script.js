@@ -16,11 +16,17 @@ window.addEventListener('beforeunload', function (e) {
 
 function load() {
     audio.checked = localStorage.getItem("audio") === "true";
-    const q = localStorage.getItem("questions");
-    if (!(q === null)) {
-        uploadedQuestions = parseQuestions(q);
+    fetch("https://wojtaszero.github.io/gra/karty%20faktu.txt")
+   .then( r => r.text() )
+   .then( t => 
+        uploadedQuestions = parseQuestions(t);
         startQuiz();
-    }
+        )
+    //const q = localStorage.getItem("questions");
+    //if (!(q === null)) {
+    //    uploadedQuestions = parseQuestions(q);
+    //    startQuiz();
+    //}
 }
 
 document.getElementById('file-input').addEventListener('change', function (e) {
@@ -178,3 +184,4 @@ function updateStats() {
     if (questionsCompleted < 1) { stats.textContent = ""; return; }
     stats.textContent = "Poprawność: " + questionsCorrect + " / " + questionsCompleted + " (" + Math.round(questionsCorrect / questionsCompleted * 100) + "%)\nZostało: " + (uploadedQuestions.length - currentQuestionIndex) + " / " + uploadedQuestions.length;
 }
+
