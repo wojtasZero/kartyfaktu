@@ -18,10 +18,7 @@ function load() {
     audio.checked = localStorage.getItem("audio") === "true";
     fetch("https://wojtaszero.github.io/gra/karty%20faktu.txt")
    .then( r => r.text() )
-   .then( t => 
-        uploadedQuestions = parseQuestions(t);
-        startQuiz();
-        )
+   .then( t =>  uploadedQuestions = parseQuestions(t); startQuiz();  )
     //const q = localStorage.getItem("questions");
     //if (!(q === null)) {
     //    uploadedQuestions = parseQuestions(q);
@@ -184,4 +181,5 @@ function updateStats() {
     if (questionsCompleted < 1) { stats.textContent = ""; return; }
     stats.textContent = "Poprawność: " + questionsCorrect + " / " + questionsCompleted + " (" + Math.round(questionsCorrect / questionsCompleted * 100) + "%)\nZostało: " + (uploadedQuestions.length - currentQuestionIndex) + " / " + uploadedQuestions.length;
 }
+
 
